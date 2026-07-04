@@ -99,5 +99,5 @@ Arduino-based smart office integration.
 
 ---
 <p align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:ff512f,100:dd2476&height=150&section=footer"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00C853,100:00BCD4&height=150&section=footer"/>
 </p>
