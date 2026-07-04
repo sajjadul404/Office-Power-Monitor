@@ -4,66 +4,106 @@
 
 ### Smart IoT-Based Office Energy Monitoring & Device Management System
 
-Monitor, analyze, and control office electrical devices in real-time using IoT sensors, a FastAPI backend, an interactive dashboard, and a Telegram Bot.
+<p align="center">
+Monitor • Analyze • Control • Save Energy
+</p>
 
-![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white)
-![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+<p align="center">
+<img src="https://readme-typing-svg.herokuapp.com?font=Poppins&size=24&pause=1000&color=00C853&center=true&vCenter=true&width=700&lines=Smart+Office+Energy+Monitoring;IoT+Based+Power+Management;FastAPI+%7C+Arduino+%7C+Telegram+Bot;Real-time+Device+Monitoring" />
+</p>
+
+<p align="center">
+<img src="https://img.shields.io/github/stars/sajjadul404/Office-Power-Monitor?style=for-the-badge">
+<img src="https://img.shields.io/github/forks/sajjadul404/Office-Power-Monitor?style=for-the-badge">
+<img src="https://img.shields.io/github/license/sajjadul404/Office-Power-Monitor?style=for-the-badge">
+<img src="https://img.shields.io/github/repo-size/sajjadul404/Office-Power-Monitor?style=for-the-badge">
+</p>
+
+<p align="center">
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
+<img src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white"/>
+<img src="https://img.shields.io/badge/WebSocket-010101?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Telegram_Bot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/>
+</p>
 
 </div>
 
 ---
 
-## 📖 Overview
+# 📖 About
 
-**Office Power Monitor** is a smart office energy monitoring system that provides real-time power consumption tracking, remote device control, and automated energy management.
+**Office Power Monitor** is a Smart IoT-Based Office Energy Monitoring and Device Control System designed to reduce electricity consumption through real-time monitoring, analytics, and remote device management.
 
-The system integrates IoT hardware with a FastAPI backend, a modern web dashboard, and a Telegram Bot to help reduce unnecessary power consumption and improve office energy efficiency.
+The project combines **IoT Hardware**, **FastAPI Backend**, **Interactive Dashboard**, and **Telegram Bot** into one centralized platform for efficient office power management.
 
 ---
 
 # ✨ Features
 
-- ⚡ Real-time power monitoring
-- 📊 Live energy usage dashboard
-- 🤖 Telegram Bot integration
-- 🔌 Smart device control
-- 📈 Energy consumption analytics
-- 🚨 Power status notifications
-- 🌐 REST API with FastAPI
-- 📡 IoT sensor integration
-- 🔒 Secure communication
-- 📱 Responsive web interface
+- ⚡ Real-Time Power Monitoring
+- 🔌 Smart Device Control
+- 📊 Live Dashboard
+- 📈 Energy Analytics
+- 🤖 Telegram Bot Integration
+- 📡 IoT Sensor Communication
+- 🌐 REST API
+- 🔄 WebSocket Live Updates
+- 🚨 Instant Notifications
+- 📱 Responsive Interface
 
 ---
 
-# 🛠️ Tech Stack
+# 🏗 System Architecture
 
-| Category | Technology |
-|-----------|------------|
-| Backend | FastAPI, Python |
+```text
+        +------------------+
+        |   IoT Devices    |
+        | Arduino / ESP32  |
+        +--------+---------+
+                 |
+                 |
+          Sensor Data
+                 |
+                 ▼
+       +------------------+
+       | FastAPI Backend  |
+       +------------------+
+          |          |
+          |          |
+          ▼          ▼
+ Dashboard        Telegram Bot
+          |
+          ▼
+     Office Users
+```
+
+---
+
+# 🛠 Tech Stack
+
+| Layer | Technologies |
+|--------|--------------|
+| Backend | Python, FastAPI |
 | Frontend | HTML, CSS, JavaScript |
 | IoT | Arduino / ESP32 |
-| API | REST API |
-| Bot | Telegram Bot |
-| Communication | WebSocket |
+| Communication | REST API, WebSocket |
+| Notification | Telegram Bot |
 | Version Control | Git & GitHub |
 
 ---
 
-# 📁 Project Structure
+# 📂 Project Structure
 
 ```text
-Office-Power-Monitor/
+Office-Power-Monitor
 │
-├── office-monitor/
-│   ├── backend/
-│   ├── bot/
-│   ├── dashboard/
-│   ├── diagrams/
-│   └── preview/
+├── office-monitor
+│   ├── backend
+│   ├── bot
+│   ├── dashboard
+│   ├── diagrams
+│   └── preview
 │
 ├── dashboard-preview.html
 ├── system-diagram.svg
@@ -72,7 +112,7 @@ Office-Power-Monitor/
 
 ---
 
-# 🚀 Getting Started
+# 🚀 Installation
 
 ## Clone Repository
 
@@ -84,7 +124,7 @@ cd Office-Power-Monitor
 
 ---
 
-## Backend Setup
+## Backend
 
 ```bash
 cd office-monitor/backend
@@ -112,31 +152,60 @@ python bot.py
 
 ---
 
-# 📊 System Modules
+# 📊 Modules
 
 - Backend API
+- Dashboard
 - Telegram Bot
-- Web Dashboard
-- IoT Device Communication
-- Energy Monitoring
 - Device Controller
+- Energy Monitoring
+- Power Analytics
 - Notification Service
+- IoT Communication
 
 ---
 
-# 🎯 Project Goals
+# 🎯 Objectives
 
-- Reduce office electricity waste
-- Monitor devices in real-time
-- Improve energy efficiency
-- Enable remote device management
-- Provide live analytics and notifications
+✔ Reduce electricity waste
+
+✔ Monitor office devices in real-time
+
+✔ Automate power management
+
+✔ Improve energy efficiency
+
+✔ Remote monitoring & control
 
 ---
 
-# 📷 Preview
+# 📸 Screenshots
 
-> Dashboard screenshots and system architecture diagrams are available inside the **preview** and **diagrams** folders.
+### Dashboard
+
+> Add dashboard screenshots here.
+
+```
+preview/dashboard.png
+```
+
+### System Diagram
+
+```
+diagrams/system-diagram.svg
+```
+
+---
+
+# 📈 Future Improvements
+
+- AI-based Power Prediction
+- Smart Scheduling
+- Monthly Reports
+- Mobile Application
+- Cloud Deployment
+- MQTT Integration
+- Multi-Office Support
 
 ---
 
@@ -144,15 +213,21 @@ python bot.py
 
 Contributions are welcome!
 
-1. Fork the repository
-2. Create a new branch
-3. Commit your changes
-4. Push to your branch
-5. Open a Pull Request
+```bash
+Fork Repository
+
+Create New Branch
+
+Commit Changes
+
+Push Branch
+
+Create Pull Request
+```
 
 ---
 
-# 📄 License
+# 📜 License
 
 This project is developed for educational and research purposes.
 
@@ -160,7 +235,9 @@ This project is developed for educational and research purposes.
 
 <div align="center">
 
-### ⭐ If you like this project, consider giving it a Star!
+### ⭐ Star this repository if you found it useful!
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00C853,100:00BCD4&height=120&section=footer"/>
 
 Made with ❤️ by **Sajjadul Islam**
 
