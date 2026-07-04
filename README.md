@@ -2,8 +2,6 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:00C853,100:00BCD4&height=240&section=header&text=Office%20Power%20Monitor&fontSize=45&fontColor=ffffff&animation=fadeIn&fontAlignY=38"/>
 
-# ⚡ Office Power Monitor
-
 ### Smart IoT-Based Office Energy Monitoring & Device Management System
 
 <p align="center">
