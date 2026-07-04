@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "author": "office-monitor hackathon team",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-led", "id": "led_light1", "top": -40, "left": 340, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-resistor", "id": "r_led", "top": -20, "left": 300, "attrs": { "value": "220" } },
+    { "type": "wokwi-dc-motor", "id": "motor_fan1", "top": 80, "left": 340, "attrs": {} },
+    { "type": "wokwi-pushbutton", "id": "btn_manual_override", "top": 200, "left": 20, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r_pulldown", "top": 240, "left": 20, "attrs": { "value": "10000" } },
+    { "type": "wokwi-potentiometer", "id": "pot_current_sense", "top": 200, "left": 200, "attrs": {} }
+  ],
+  "connections": [
+    ["esp:D25", "r_led:1", "green", ["h0"]],
+    ["r_led:2", "led_light1:A", "green", ["h0"]],
+    ["led_light1:C", "esp:GND.1", "black", ["v0", "h0"]],
+
+    ["esp:D26", "motor_fan1:1", "green", ["h0"]],
+    ["motor_fan1:2", "esp:GND.2", "black", ["h0"]],
+
+    ["esp:3V3", "btn_manual_override:1.l", "red", ["h0"]],
+    ["btn_manual_override:2.l", "esp:D27", "green", ["h0"]],
+    ["btn_manual_override:2.l", "r_pulldown:1", "green", ["v0"]],
+    ["r_pulldown:2", "esp:GND.3", "black", ["v0"]],
+
+    ["esp:3V3", "pot_current_sense:VCC", "red", ["h0"]],
+    ["pot_current_sense:GND", "esp:GND.4", "black", ["h0"]],
+    ["pot_current_sense:SIG", "esp:D34", "green", ["h0"]]
+  ],
+  "dependencies": {}
+}
