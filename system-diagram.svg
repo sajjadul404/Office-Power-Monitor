@@ -1,0 +1,96 @@
+<svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#1a9c5c"/>
+    </marker>
+    <marker id="arrowAmber" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#c9781a"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#4a5568"/>
+    </marker>
+  </defs>
+
+  <rect width="1000" height="660" fill="#ffffff"/>
+
+  <text x="500" y="26" text-anchor="middle" font-size="18" font-weight="700" fill="#0b1220">
+    Office Pulse — System Architecture
+  </text>
+
+  <!-- Simulated Device Layer -->
+  <rect x="40" y="42" width="920" height="86" rx="10" fill="#eaf4ff" stroke="#2b6cb0" stroke-width="1.5"/>
+  <text x="500" y="66" text-anchor="middle" font-size="14" font-weight="700" fill="#0b1220">Simulated Device Layer</text>
+  <text x="500" y="86" text-anchor="middle" font-size="11.5" fill="#334155">
+    15 devices — 3 rooms (Drawing, Work Room 1, Work Room 2) × (2 fans + 3 lights)
+  </text>
+  <text x="500" y="104" text-anchor="middle" font-size="11.5" fill="#334155">
+    Accelerated sim clock drives a scripted + random-walk state generator (Python asyncio task)
+  </text>
+
+  <line x1="500" y1="128" x2="500" y2="176" stroke="#1a1a1a" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <text x="515" y="156" font-size="10.5" fill="#475569">status, watts, room, timestamp</text>
+
+  <!-- Backend -->
+  <rect x="270" y="178" width="460" height="150" rx="10" fill="#0b1220" stroke="#0b1220" stroke-width="1.5"/>
+  <text x="500" y="202" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Backend — FastAPI (single source of truth)</text>
+  <text x="500" y="224" text-anchor="middle" font-size="11" fill="#c9d3e0">DeviceStore — in-memory state, one dict per device</text>
+  <text x="500" y="242" text-anchor="middle" font-size="11" fill="#c9d3e0">Alerts engine — after-hours + continuous-2h rules</text>
+  <text x="500" y="260" text-anchor="middle" font-size="11" fill="#c9d3e0">UsageTracker — integrates W → kWh over time</text>
+  <text x="500" y="278" text-anchor="middle" font-size="11" fill="#c9d3e0">REST: /api/devices · /rooms/{id} · /usage · /alerts</text>
+  <text x="500" y="296" text-anchor="middle" font-size="11" fill="#c9d3e0">WebSocket: /ws — broadcasts a full snapshot on every tick</text>
+  <text x="500" y="314" text-anchor="middle" font-size="10" fill="#5eead4">↳ one process, one truth — both clients below read the same state</text>
+
+  <!-- Branch lines -->
+  <line x1="380" y1="328" x2="210" y2="392" stroke="#1a9c5c" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="185" y="365" font-size="10.5" fill="#1a9c5c" font-weight="600">WebSocket push</text>
+  <text x="150" y="379" font-size="10.5" fill="#1a9c5c">(live, every tick)</text>
+
+  <line x1="330" y1="328" x2="150" y2="392" stroke="#c9781a" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowAmber)"/>
+  <text x="60" y="352" font-size="10.5" fill="#c9781a" font-weight="600">REST (initial load)</text>
+
+  <line x1="620" y1="328" x2="800" y2="392" stroke="#c9781a" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowAmber)"/>
+  <text x="705" y="365" font-size="10.5" fill="#c9781a" font-weight="600">REST GET, on demand</text>
+  <text x="700" y="379" font-size="10.5" fill="#c9781a">+ 15s poll for alerts</text>
+
+  <!-- Dashboard box -->
+  <rect x="50" y="394" width="300" height="86" rx="10" fill="#eefaf3" stroke="#1a9c5c" stroke-width="1.5"/>
+  <text x="200" y="418" text-anchor="middle" font-size="13" font-weight="700" fill="#0b1220">Web Dashboard (React)</text>
+  <text x="200" y="438" text-anchor="middle" font-size="10.5" fill="#334155">Floor plan · device panel</text>
+  <text x="200" y="454" text-anchor="middle" font-size="10.5" fill="#334155">power meter · alerts panel</text>
+  <text x="200" y="470" text-anchor="middle" font-size="10.5" fill="#334155">updates with no page refresh</text>
+
+  <!-- Discord bot box -->
+  <rect x="650" y="394" width="300" height="86" rx="10" fill="#fff6ea" stroke="#c9781a" stroke-width="1.5"/>
+  <text x="800" y="418" text-anchor="middle" font-size="13" font-weight="700" fill="#0b1220">Discord Bot (discord.py)</text>
+  <text x="800" y="438" text-anchor="middle" font-size="10.5" fill="#334155">!status · !room &lt;name&gt; · !usage</text>
+  <text x="800" y="454" text-anchor="middle" font-size="10.5" fill="#334155">templates + optional LLM humanizing</text>
+  <text x="800" y="470" text-anchor="middle" font-size="10.5" fill="#334155">proactive alert channel posts</text>
+
+  <line x1="200" y1="480" x2="200" y2="534" stroke="#1a9c5c" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="212" y="510" font-size="10.5" fill="#1a9c5c">renders live UI</text>
+
+  <line x1="770" y1="480" x2="770" y2="534" stroke="#1a9c5c" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="600" y="510" font-size="10.5" fill="#1a9c5c">replies + proactive posts</text>
+
+  <line x1="830" y1="534" x2="830" y2="480" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowGray)"/>
+  <text x="838" y="510" font-size="10.5" fill="#4a5568">!command</text>
+
+  <!-- User boxes -->
+  <rect x="60" y="536" width="280" height="60" rx="10" fill="#f4f6f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="200" y="560" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0b1220">Boss / team — browser</text>
+  <text x="200" y="578" text-anchor="middle" font-size="10.5" fill="#334155">glance at the live floor plan &amp; alerts</text>
+
+  <rect x="660" y="536" width="280" height="60" rx="10" fill="#f4f6f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="800" y="560" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0b1220">Boss / team — Discord</text>
+  <text x="800" y="578" text-anchor="middle" font-size="10.5" fill="#334155">ask on demand, get pinged on anomalies</text>
+
+  <!-- Legend -->
+  <g transform="translate(40, 614)">
+    <line x1="0" y1="0" x2="30" y2="0" stroke="#1a9c5c" stroke-width="2" marker-end="url(#arrowGreen)"/>
+    <text x="38" y="4" font-size="11" fill="#334155">Live / push</text>
+    <line x1="160" y1="0" x2="190" y2="0" stroke="#c9781a" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowAmber)"/>
+    <text x="198" y="4" font-size="11" fill="#334155">On-demand REST</text>
+    <line x1="350" y1="0" x2="380" y2="0" stroke="#4a5568" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowGray)"/>
+    <text x="388" y="4" font-size="11" fill="#334155">User-initiated command</text>
+  </g>
+</svg>

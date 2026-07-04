@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Office Pulse — Dashboard Preview (mock data)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #0b1220; --panel: #131b2e; --panel-alt: #1a2540; --border: #253352;
+  --text-primary: #e8ecf4; --text-secondary: #8b96ae;
+  --accent-on: #3ddc84; --accent-off: #445172; --accent-warn: #f5a623;
+  --accent-critical: #ff5470; --accent-data: #5eead4;
+  --font-display: "Space Grotesk", sans-serif; --font-mono: "IBM Plex Mono", monospace; --font-body: "Inter", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-primary); font-family:var(--font-body); -webkit-font-smoothing:antialiased; }
+.app { max-width:1180px; margin:0 auto; padding:28px 24px 60px; }
+.app-header { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-bottom:24px; }
+.app-eyebrow { font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-data); margin-bottom:4px; }
+.app-header h1 { font-family:var(--font-display); font-size:28px; font-weight:600; margin:0; }
+.header-right { display:flex; align-items:center; gap:14px; }
+.status-pill { display:inline-flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:12px; padding:6px 10px; border-radius:999px; background:var(--panel); border:1px solid var(--border); }
+.status-dot { width:7px; height:7px; border-radius:50%; background:var(--accent-on); box-shadow:0 0 6px var(--accent-on); display:inline-block; }
+.sim-clock { font-family:var(--font-mono); font-size:13px; color:var(--text-secondary); }
+.app-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:20px; align-items:start; }
+.col-main,.col-side { display:flex; flex-direction:column; gap:20px; }
+@media (max-width:860px){ .app-grid{grid-template-columns:1fr;} }
+.panel,.floorplan-card { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:20px; }
+.panel-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.panel h2 { font-family:var(--font-display); font-size:16px; font-weight:600; margin:0; }
+.card-eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-secondary); margin-bottom:10px; }
+.floorplan-svg { width:100%; height:auto; }
+.room-label { font-family:var(--font-mono); font-size:11px; fill:var(--text-secondary); text-transform:uppercase; letter-spacing:.05em; }
+.fan-blades { transform-origin:0px 0px; }
+.fan-blades.spin { animation:spin 1.6s linear infinite; }
+@keyframes spin { to{ transform:rotate(360deg);} }
+.light-halo { animation:pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:.12;} 50%{opacity:.3;} }
+.floorplan-legend { display:flex; gap:18px; margin-top:12px; font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); }
+.floorplan-legend .dot { margin-right:6px; }
+.chip-row { display:flex; gap:6px; flex-wrap:wrap; }
+.chip { font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); background:var(--panel-alt); border:1px solid var(--border); border-radius:999px; padding:5px 10px; cursor:pointer; }
+.chip-active { color:var(--bg); background:var(--accent-data); border-color:var(--accent-data); }
+.room-group { margin-bottom:14px; } .room-group:last-child{margin-bottom:0;}
+.room-group-title { font-size:12px; color:var(--text-secondary); margin-bottom:8px; }
+.device-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:8px; }
+.device-chip { display:flex; flex-direction:column; gap:3px; background:var(--panel-alt); border:1px solid var(--border); border-radius:10px; padding:9px 11px; }
+.device-chip.device-on { border-color:var(--accent-on); }
+.device-name { font-size:13px; font-weight:500; }
+.device-meta { font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); }
+.dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+.dot-on { background:var(--accent-on); box-shadow:0 0 5px var(--accent-on); }
+.dot-off { background:var(--accent-off); }
+.power-total { display:flex; align-items:baseline; gap:8px; margin-bottom:4px; }
+.power-total-value { font-family:var(--font-mono); font-size:40px; font-weight:600; color:var(--accent-data); }
+.power-total-unit { font-size:13px; color:var(--text-secondary); }
+.power-kwh { font-size:13px; color:var(--text-secondary); margin-bottom:16px; }
+.power-bar-row { display:grid; grid-template-columns:90px 1fr 50px; align-items:center; gap:10px; margin-bottom:10px; font-size:12px; }
+.power-bar-label { color:var(--text-secondary); }
+.power-bar-track { background:var(--panel-alt); border-radius:999px; height:8px; overflow:hidden; }
+.power-bar-fill { background:var(--accent-data); height:100%; border-radius:999px; transition:width .5s ease; }
+.power-bar-value { font-family:var(--font-mono); text-align:right; }
+.alert-count { font-family:var(--font-mono); font-size:11px; background:var(--accent-warn); color:var(--bg); border-radius:999px; padding:2px 8px; }
+.alerts-empty { color:var(--text-secondary); font-size:13px; }
+.alerts-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.alert-item { border-left:3px solid var(--accent-warn); background:var(--panel-alt); border-radius:0 8px 8px 0; padding:10px 12px; }
+.alert-item.alert-critical { border-left-color:var(--accent-critical); }
+.alert-message { font-size:13px; margin-bottom:4px; }
+.alert-timestamp { font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); }
+.app-footer { margin-top:32px; text-align:center; font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); }
+.preview-banner { font-family:var(--font-mono); font-size:11px; text-align:center; color:var(--bg); background:var(--accent-data); padding:6px; border-radius:8px; margin-bottom:18px; }
+</style>
+</head>
+<body>
+<div class="preview-banner">PREVIEW MODE — mock data, no backend connected. This is a visual reference for the real React dashboard.</div>
+<div class="app">
+  <header class="app-header">
+    <div>
+      <div class="app-eyebrow">Office Pulse</div>
+      <h1>Live device &amp; power monitor</h1>
+    </div>
+    <div class="header-right">
+      <span class="status-pill"><i class="status-dot"></i> Live</span>
+      <span class="sim-clock" id="simClock">—</span>
+    </div>
+  </header>
+
+  <main class="app-grid">
+    <div class="col-main">
+      <div class="floorplan-card">
+        <div class="card-eyebrow">Office layout — top view</div>
+        <svg viewBox="0 0 820 230" class="floorplan-svg" id="floorplanSvg"></svg>
+        <div class="floorplan-legend">
+          <span><i class="dot dot-on"></i> device on</span>
+          <span><i class="dot dot-off"></i> device off</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Live device status</h2>
+          <div class="chip-row">
+            <button class="chip chip-active">All rooms</button>
+            <button class="chip">Drawing Room</button>
+            <button class="chip">Work Room 1</button>
+            <button class="chip">Work Room 2</button>
+          </div>
+        </div>
+        <div id="deviceGroups"></div>
+      </div>
+    </div>
+
+    <div class="col-side">
+      <div class="panel">
+        <div class="panel-header"><h2>Power consumption</h2></div>
+        <div class="power-total">
+          <span class="power-total-value" id="totalW">0</span>
+          <span class="power-total-unit">W right now</span>
+        </div>
+        <div class="power-kwh">Est. usage today: <strong id="kwhToday">0</strong> kWh</div>
+        <div class="power-bars" id="powerBars"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Active alerts</h2>
+          <span class="alert-count" id="alertCount" style="display:none">0</span>
+        </div>
+        <div id="alertsBody"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">Simulated data · office hours 9AM–5PM · clock runs at accelerated demo speed</footer>
+</div>
+
+<script>
+const ROOMS = ["drawing", "work1", "work2"];
+const ROOM_LABELS = { drawing: "Drawing Room", work1: "Work Room 1", work2: "Work Room 2" };
+const FAN_SLOTS = [{x:75,y:55},{x:185,y:55}];
+const LIGHT_SLOTS = [{x:55,y:145},{x:130,y:145},{x:205,y:145}];
+
+let devices = [];
+ROOMS.forEach(room => {
+  for (let i=1;i<=2;i++) devices.push({id:`${room}-fan-${i}`, name:`Fan ${i}`, type:"fan", room, status:false, watts:60, lastChanged: Date.now()});
+  for (let i=1;i<=3;i++) devices.push({id:`${room}-light-${i}`, name:`Light ${i}`, type:"light", room, status:false, watts:15, lastChanged: Date.now()});
+});
+
+let simMinutes = 8*60; // start at 8:00
+let roomAllOnSince = {drawing:null, work1:null, work2:null};
+
+function isOfficeHours(){ const h = Math.floor(simMinutes/60)%24; return h>=9 && h<17; }
+
+function tick() {
+  simMinutes += 12; // ~12 sim-minutes per tick for a lively preview
+  const officeHours = isOfficeHours();
+  const hour = Math.floor(simMinutes/60)%24;
+  const minute = simMinutes%60;
+
+  devices.forEach(d => {
+    if (d.room === "work2" && hour===17 && minute<24) { if(!d.status){ d.status=true; d.lastChanged=Date.now(); } return; }
+    if (d.room === "work2" && !officeHours && hour>=17) return; // stays on deliberately
+    const targetP = officeHours ? 0.55 : 0.03;
+    if (Math.random() < 0.35) {
+      const newStatus = Math.random() < targetP;
+      if (newStatus !== d.status) { d.status = newStatus; d.lastChanged = Date.now(); }
+    }
+  });
+
+  ROOMS.forEach(room => {
+    const devs = devices.filter(d=>d.room===room);
+    const allOn = devs.every(d=>d.status);
+    if (allOn && !roomAllOnSince[room]) roomAllOnSince[room] = simMinutes;
+    if (!allOn) roomAllOnSince[room] = null;
+  });
+
+  render(hour, minute, officeHours);
+}
+
+function render(hour, minute, officeHours) {
+  document.getElementById("simClock").textContent =
+    `Day 1, ${String(hour).padStart(2,"0")}:${String(minute).padStart(2,"0")}`;
+
+  // floor plan
+  let svg = "";
+  ROOMS.forEach((room, i) => {
+    const devs = devices.filter(d=>d.room===room);
+    const fans = devs.filter(d=>d.type==="fan");
+    const lights = devs.filter(d=>d.type==="light");
+    const roomOn = devs.some(d=>d.status);
+    const ox = i*273+10;
+    svg += `<g transform="translate(${ox},10)">
+      <rect width="260" height="200" rx="10" fill="var(--panel)" stroke="${roomOn?"var(--accent-on)":"var(--border)"}" stroke-width="${roomOn?1.5:1}"/>
+      <text x="16" y="24" class="room-label">${ROOM_LABELS[room]}</text>`;
+    fans.forEach((d, idx) => {
+      const {x,y} = FAN_SLOTS[idx];
+      svg += `<g transform="translate(${x},${y})">
+        <circle r="20" fill="none" stroke="var(--border)" stroke-width="1.5"/>
+        <g class="fan-blades ${d.status?'spin':''}">
+          ${[0,120,240].map(deg=>`<ellipse cx="0" cy="-9" rx="5" ry="11" fill="${d.status?'var(--accent-on)':'var(--accent-off)'}" transform="rotate(${deg})" opacity="${d.status?0.95:0.55}"/>`).join("")}
+          <circle r="3.5" fill="${d.status?'var(--accent-on)':'var(--accent-off)'}"/>
+        </g></g>`;
+    });
+    lights.forEach((d, idx) => {
+      const {x,y} = LIGHT_SLOTS[idx];
+      svg += `<g transform="translate(${x},${y})">
+        ${d.status?`<circle r="18" fill="var(--accent-warn)" opacity="0.18" class="light-halo"/>`:""}
+        <circle r="9" fill="${d.status?'var(--accent-warn)':'var(--panel-alt)'}" stroke="${d.status?'var(--accent-warn)':'var(--border)'}" stroke-width="1.5"/>
+      </g>`;
+    });
+    svg += `</g>`;
+  });
+  document.getElementById("floorplanSvg").innerHTML = svg;
+
+  // device groups
+  let groupsHtml = "";
+  ROOMS.forEach(room => {
+    groupsHtml += `<div class="room-group"><div class="room-group-title">${ROOM_LABELS[room]}</div><div class="device-grid">`;
+    devices.filter(d=>d.room===room).forEach(d => {
+      const ago = Math.round((Date.now()-d.lastChanged)/1000);
+      groupsHtml += `<div class="device-chip ${d.status?'device-on':''}">
+        <span class="dot ${d.status?'dot-on':'dot-off'}"></span>
+        <span class="device-name">${d.type==="fan"?"Fan":"Light"} ${d.name.split(" ")[1]}</span>
+        <span class="device-meta">${d.status? d.watts+"W" : "off"} · ${ago<5?"just now":ago+"s ago"}</span>
+      </div>`;
+    });
+    groupsHtml += `</div></div>`;
+  });
+  document.getElementById("deviceGroups").innerHTML = groupsHtml;
+
+  // power
+  const totalW = devices.filter(d=>d.status).reduce((s,d)=>s+d.watts,0);
+  document.getElementById("totalW").textContent = totalW;
+  document.getElementById("kwhToday").textContent = (totalW * (simMinutes/60) / 1000 * 0.08).toFixed(2);
+  const byRoom = {};
+  ROOMS.forEach(r => byRoom[r] = devices.filter(d=>d.room===r && d.status).reduce((s,d)=>s+d.watts,0));
+  const maxRoom = Math.max(1, ...Object.values(byRoom));
+  let barsHtml = "";
+  ROOMS.forEach(r => {
+    const pct = Math.round((byRoom[r]/maxRoom)*100);
+    barsHtml += `<div class="power-bar-row">
+      <span class="power-bar-label">${ROOM_LABELS[r]}</span>
+      <div class="power-bar-track"><div class="power-bar-fill" style="width:${pct}%"></div></div>
+      <span class="power-bar-value">${byRoom[r]}W</span>
+    </div>`;
+  });
+  document.getElementById("powerBars").innerHTML = barsHtml;
+
+  // alerts
+  const alerts = [];
+  if (!officeHours) {
+    devices.forEach(d => { if (d.status) alerts.push({sev:"warning", msg:`${d.type==="fan"?"Fan":"Light"} ${d.name.split(" ")[1]} in ${ROOM_LABELS[d.room]} is ON outside office hours (9AM-5PM).`}); });
+  }
+  ROOMS.forEach(room => {
+    const since = roomAllOnSince[room];
+    if (since !== null && (simMinutes - since) >= 120) {
+      alerts.push({sev:"critical", msg:`All devices in ${ROOM_LABELS[room]} have been ON continuously for over 2 hours.`});
+    }
+  });
+  const alertCountEl = document.getElementById("alertCount");
+  if (alerts.length) { alertCountEl.style.display="inline-block"; alertCountEl.textContent = alerts.length; }
+  else alertCountEl.style.display = "none";
+  document.getElementById("alertsBody").innerHTML = alerts.length
+    ? `<ul class="alerts-list">${alerts.map(a=>`<li class="alert-item alert-${a.sev}"><div class="alert-message">${a.msg}</div><div class="alert-timestamp">Day 1, ${String(hour).padStart(2,"0")}:${String(minute).padStart(2,"0")}</div></li>`).join("")}</ul>`
+    : `<div class="alerts-empty">No anomalies right now — everything checks out.</div>`;
+}
+
+tick();
+setInterval(tick, 1200);
+</script>
+</body>
+</html>
