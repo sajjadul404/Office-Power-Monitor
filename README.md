@@ -2,8 +2,6 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:00C853,100:00BCD4&height=240&section=header&text=Office%20Power%20Monitor&fontSize=45&fontColor=ffffff&animation=fadeIn&fontAlignY=38"/>
 
-### Smart IoT-Based Office Energy Monitoring & Device Management System
-
 <p align="center">
 <img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&pause=1000&color=00C853&center=true&vCenter=true&width=850&lines=Real-Time+Office+Power+Monitoring;IoT+Based+Energy+Management;FastAPI+%7C+Arduino+%7C+Telegram+Bot;Smart+Dashboard+with+Live+Analytics;Reduce+Power+Consumption+Efficiently"/>
 </p>
