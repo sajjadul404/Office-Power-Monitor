@@ -1,30 +1,45 @@
 <div align="center">
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00C853,100:00BCD4&height=220&section=header&text=Office%20Power%20Monitor&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35"/>
+
 # ⚡ Office Power Monitor
 
 ### Smart IoT-Based Office Energy Monitoring & Device Management System
 
 <p align="center">
-Monitor • Analyze • Control • Save Energy
+<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=600&size=24&pause=1000&color=00C853&center=true&vCenter=true&width=750&lines=Smart+Office+Energy+Monitoring;FastAPI+%7C+Arduino+%7C+Telegram+Bot;Real-Time+Power+Analytics;IoT-Based+Device+Control"/>
 </p>
 
 <p align="center">
-<img src="https://readme-typing-svg.herokuapp.com?font=Poppins&size=24&pause=1000&color=00C853&center=true&vCenter=true&width=700&lines=Smart+Office+Energy+Monitoring;IoT+Based+Power+Management;FastAPI+%7C+Arduino+%7C+Telegram+Bot;Real-time+Device+Monitoring" />
+
+<img src="https://img.shields.io/github/stars/sajjadul404/Office-Power-Monitor?style=for-the-badge"/>
+
+<img src="https://img.shields.io/github/forks/sajjadul404/Office-Power-Monitor?style=for-the-badge"/>
+
+<img src="https://img.shields.io/github/issues/sajjadul404/Office-Power-Monitor?style=for-the-badge"/>
+
+<img src="https://img.shields.io/github/license/sajjadul404/Office-Power-Monitor?style=for-the-badge"/>
+
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/stars/sajjadul404/Office-Power-Monitor?style=for-the-badge">
-<img src="https://img.shields.io/github/forks/sajjadul404/Office-Power-Monitor?style=for-the-badge">
-<img src="https://img.shields.io/github/license/sajjadul404/Office-Power-Monitor?style=for-the-badge">
-<img src="https://img.shields.io/github/repo-size/sajjadul404/Office-Power-Monitor?style=for-the-badge">
-</p>
 
-<p align="center">
-<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
-<img src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white"/>
-<img src="https://img.shields.io/badge/WebSocket-010101?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Telegram_Bot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/>
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/Arduino-00979D?style=flat-square&logo=arduino&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=html5&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=css3&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
+
+<img src="https://img.shields.io/badge/WebSocket-black?style=flat-square"/>
+
+<img src="https://img.shields.io/badge/Telegram_Bot-26A5E4?style=flat-square&logo=telegram&logoColor=white"/>
+
 </p>
 
 </div>
@@ -33,67 +48,69 @@ Monitor • Analyze • Control • Save Energy
 
 # 📖 About
 
-**Office Power Monitor** is a Smart IoT-Based Office Energy Monitoring and Device Control System designed to reduce electricity consumption through real-time monitoring, analytics, and remote device management.
+**Office Power Monitor** is a Smart IoT-Based Office Energy Monitoring System designed to monitor, analyze, and control office electrical devices in real time.
 
-The project combines **IoT Hardware**, **FastAPI Backend**, **Interactive Dashboard**, and **Telegram Bot** into one centralized platform for efficient office power management.
+The project integrates **IoT hardware**, a **FastAPI backend**, a **Web Dashboard**, and a **Telegram Bot** to provide intelligent power monitoring and efficient energy management.
 
 ---
 
-# ✨ Features
+# ✨ Key Features
 
-- ⚡ Real-Time Power Monitoring
+- ⚡ Live Power Monitoring
 - 🔌 Smart Device Control
-- 📊 Live Dashboard
+- 📊 Interactive Dashboard
 - 📈 Energy Analytics
-- 🤖 Telegram Bot Integration
-- 📡 IoT Sensor Communication
+- 🤖 Telegram Bot Support
 - 🌐 REST API
 - 🔄 WebSocket Live Updates
-- 🚨 Instant Notifications
+- 📡 IoT Device Integration
+- 🚨 Power Notifications
 - 📱 Responsive Interface
 
 ---
 
-# 🏗 System Architecture
+# 🏛️ System Architecture
 
 ```text
-        +------------------+
-        |   IoT Devices    |
-        | Arduino / ESP32  |
-        +--------+---------+
-                 |
-                 |
-          Sensor Data
-                 |
-                 ▼
-       +------------------+
-       | FastAPI Backend  |
-       +------------------+
-          |          |
-          |          |
-          ▼          ▼
- Dashboard        Telegram Bot
-          |
-          ▼
-     Office Users
+                    +----------------------+
+                    |    IoT Sensors       |
+                    |  Arduino / ESP32     |
+                    +----------+-----------+
+                               │
+                               │
+                         Sensor Data
+                               │
+                               ▼
+                  +-------------------------+
+                  |     FastAPI Backend     |
+                  +-----------+-------------+
+                              │
+               ┌──────────────┴──────────────┐
+               ▼                             ▼
+      Dashboard UI                  Telegram Bot
+               │                             │
+               └──────────────┬──────────────┘
+                              ▼
+                     Office Administrators
 ```
 
 ---
 
 # 🛠 Tech Stack
 
-| Layer | Technologies |
-|--------|--------------|
+| Category | Technologies |
+|----------|--------------|
 | Backend | Python, FastAPI |
 | Frontend | HTML, CSS, JavaScript |
 | IoT | Arduino / ESP32 |
-| Communication | REST API, WebSocket |
-| Notification | Telegram Bot |
+| API | REST API |
+| Communication | WebSocket |
+| Bot | Telegram Bot |
 | Version Control | Git & GitHub |
 
 ---
 
-# 📂 Project Structure
+# 📁 Project Structure
 
 ```text
 Office-Power-Monitor
@@ -114,7 +131,7 @@ Office-Power-Monitor
 
 # 🚀 Installation
 
-## Clone Repository
+### Clone Repository
 
 ```bash
 git clone https://github.com/sajjadul404/Office-Power-Monitor.git
@@ -124,7 +141,7 @@ cd Office-Power-Monitor
 
 ---
 
-## Backend
+### Backend
 
 ```bash
 cd office-monitor/backend
@@ -140,7 +157,7 @@ uvicorn app.main:app --reload
 
 ---
 
-## Telegram Bot
+### Telegram Bot
 
 ```bash
 cd office-monitor/bot
@@ -152,60 +169,55 @@ python bot.py
 
 ---
 
-# 📊 Modules
+# 📊 Components
 
 - Backend API
 - Dashboard
 - Telegram Bot
-- Device Controller
-- Energy Monitoring
-- Power Analytics
-- Notification Service
 - IoT Communication
+- Energy Analytics
+- Device Controller
+- Notification Service
 
 ---
 
 # 🎯 Objectives
 
-✔ Reduce electricity waste
-
-✔ Monitor office devices in real-time
-
-✔ Automate power management
-
-✔ Improve energy efficiency
-
-✔ Remote monitoring & control
+- Reduce unnecessary electricity consumption
+- Monitor devices in real time
+- Improve office energy efficiency
+- Enable remote power control
+- Deliver live energy analytics
 
 ---
 
-# 📸 Screenshots
+# 📸 Preview
 
 ### Dashboard
 
-> Add dashboard screenshots here.
+> Replace this with your dashboard screenshot.
 
-```
+```text
 preview/dashboard.png
 ```
 
 ### System Diagram
 
-```
+```text
 diagrams/system-diagram.svg
 ```
 
 ---
 
-# 📈 Future Improvements
+# 📈 Future Enhancements
 
-- AI-based Power Prediction
-- Smart Scheduling
-- Monthly Reports
-- Mobile Application
-- Cloud Deployment
-- MQTT Integration
-- Multi-Office Support
+- 📱 Mobile App
+- ☁ Cloud Deployment
+- 🤖 AI Energy Prediction
+- 📊 Monthly Reports
+- 🌍 Multi Office Support
+- 🔔 Smart Automation
+- 📡 MQTT Integration
 
 ---
 
@@ -216,26 +228,34 @@ Contributions are welcome!
 ```bash
 Fork Repository
 
-Create New Branch
+Create Feature Branch
 
 Commit Changes
 
 Push Branch
 
-Create Pull Request
+Open Pull Request
 ```
 
 ---
 
-# 📜 License
+# 📄 License
 
-This project is developed for educational and research purposes.
+This project is intended for educational and research purposes.
 
 ---
 
 <div align="center">
 
-### ⭐ Star this repository if you found it useful!
+### ⭐ Don't forget to Star this repository!
+
+<img src="https://github-readme-stats.vercel.app/api?username=sajjadul404&show_icons=true&theme=tokyonight"/>
+
+<br>
+
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=sajjadul404&theme=tokyonight"/>
+
+<br>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:00C853,100:00BCD4&height=120&section=footer"/>
 
